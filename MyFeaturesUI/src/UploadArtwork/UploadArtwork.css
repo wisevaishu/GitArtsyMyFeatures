@@ -1,0 +1,86 @@
+.upload-artwork-container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.upload-artwork-container h1 {
+    text-align: center;
+    color: #333;
+}
+
+.upload-artwork-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.upload-artwork-container label {
+    margin-bottom: 10px;
+}
+
+.upload-artwork-container input[type="text"],
+.upload-artwork-container input[type="number"],
+.upload-artwork-container textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.upload-artwork-container input[type="file"] {
+    margin-top: 5px;
+}
+
+.upload-artwork-container button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.upload-artwork-container button:hover {
+    background-color: #0056b3;
+}
+
+.upload-artwork-container .error-message {
+    color: red;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.upload-artwork-container .tags-checkbox-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.upload-artwork-container .tag-label {
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.checkbox-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.checkbox-item input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+.checkbox-item .checkbox-label {
+    cursor: pointer;
+    /* Additional styles to make the label look clickable */
+}

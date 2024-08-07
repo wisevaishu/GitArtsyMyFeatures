@@ -1,0 +1,85 @@
+
+.tag-manager-container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tag-manager-container h1 {
+    text-align: center;
+    color: #333;
+}
+
+.tag-manager-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.tag-manager-container label {
+    margin-bottom: 10px;
+}
+
+.tag-manager-container input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.tag-manager-container button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.tag-manager-container button:hover {
+    background-color: #0056b3;
+}
+
+.tag-manager-container ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.tag-manager-container li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.tag-manager-container .error-message {
+    color: red;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.tag-manager-container .btn-edit,
+.tag-manager-container .btn-delete {
+    background: none;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.tag-manager-container .btn-edit:hover {
+    color: #0056b3;
+}
+
+.tag-manager-container .btn-delete {
+    color: red;
+}
+
+.tag-manager-container .btn-delete:hover {
+    color: darkred;
+}

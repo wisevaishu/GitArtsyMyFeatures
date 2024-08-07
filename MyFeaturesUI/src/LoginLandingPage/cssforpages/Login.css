@@ -1,0 +1,125 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start; /* Align items to the left */
+    align-items: center;
+    background-color: #d77c7c; 
+}
+
+.app-container {
+    display: flex;
+    justify-content: space-around; /* Adjust spacing between containers */
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.login-container {
+    flex: 1; /* Take up remaining space */
+    display: flex;
+    justify-content: center; /* Center login content horizontally */
+    align-items: center; /* Center login content vertically */
+}
+
+.popup-container {
+    flex: 1; /* Take up remaining space */
+    display: flex;
+    justify-content: center; /* Center popup content horizontally */
+    align-items: center; /* Center popup content vertically */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 500px;
+    padding: 30px;
+    background-color: #efe4d8;
+    border: 2px solid rgb(188, 142, 142);
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.text {
+    color: #100503;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.underline {
+    width: 100px;
+    height: 4px;
+    background: #100f0f;
+    margin: 10px auto;
+    border-radius: 2px;
+}
+
+form {
+    width: 100%;
+}
+
+.inputs {
+    margin-top: 30px;
+}
+
+.input {
+    display: flex;
+    align-items: center;
+    background: rgba(135, 20, 20, 0.13);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.input input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 10px;
+    font-size: 1rem;
+}
+
+.submit-container {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.submit {
+    padding: 12px 24px;
+    background-color: #161515;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.submit:hover {
+    background-color: #ff6347;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.9rem;
+}
+
+.footer a {
+    color: #fa4118;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.footer a:hover {
+    color: #ff6347;
+}
