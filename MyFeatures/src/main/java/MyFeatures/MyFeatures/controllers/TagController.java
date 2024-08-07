@@ -10,7 +10,7 @@ import java.util.List;
 
 //Controller for managing Tags.
 @RestController
-@RequestMapping("/api/tags")
+@RequestMapping("gitartsy/api/tags")
 public class TagController {
 
     @Autowired
