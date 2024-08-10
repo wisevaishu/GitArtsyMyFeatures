@@ -25,8 +25,7 @@ const Layout = ({ children }) => {
                     <li><Link to="/uploadartwork">Upload Artwork</Link></li>
                     <li><Link to="/tags">Manage Tags</Link></li> 
                     <li><Link to="/artworkslist">List Artworks</Link></li> 
-                    {/* <li><Link to="/sample">sample</Link></li> 
-                    <li><Link to="/samplelist">sample list</Link></li>  */}
+                    <li><Link to="/viewprofile">View Profile</Link></li> 
                     
                 </ul>
             </nav>

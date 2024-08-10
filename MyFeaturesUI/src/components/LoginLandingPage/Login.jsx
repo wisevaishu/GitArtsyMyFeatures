@@ -26,7 +26,7 @@ const Login = () => {
             const response = await api.login(formData.username, formData.password);
             console.log('Login successful:', response);
             localStorage.setItem('user', JSON.stringify(response));
-            navigate('/home');
+            navigate('/createprofile');
         } catch (error) {
             console.error('Login error:', error);
             setErrorMessage(error.response?.data || 'An error occurred');

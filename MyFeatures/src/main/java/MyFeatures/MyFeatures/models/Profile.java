@@ -27,8 +27,17 @@ public class Profile {
     private String email;
     @Column(name = "phone")
     private String phone;
-    @Column(name = "profile_pic")
-    private String profilePic;
+    @Column(name = "profile_pic_filename")
+    private String filename;
+
+    @Column(name = "profile_pic_uri")
+    private String fileDownloadUri;
+
+    @Column(name = "profile_pic_file_type")
+    private String fileType;
+
+    @Column(name = "profile_pic_size")
+    private long size;
     @Column(name = "bio_description", length = 500)
     private String bioDescription;
     private LocalDateTime createdAt;
@@ -40,18 +49,20 @@ public class Profile {
     public Profile() {
     }
 
-    public Profile(User user, String name, String location, String email, String phone, String profilePic, String bioDescription) {
+    public Profile(User user, String name, String location, String email, String phone, String filename, String fileDownloadUri, String fileType, long size, String bioDescription) {
         this.user = user;
         this.name = name;
         this.location = location;
         this.email = email;
         this.phone = phone;
-        this.profilePic = profilePic;
+        this.filename = filename;
+        this.fileDownloadUri = fileDownloadUri;
+        this.fileType = fileType;
+        this.size = size;
         this.bioDescription = bioDescription;
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
     }
-
 
     // Getters and setters
 
@@ -103,13 +114,7 @@ public class Profile {
         this.phone = phone;
     }
 
-    public String getProfilePic() {
-        return profilePic;
-    }
 
-    public void setProfilePic(String profilePic) {
-        this.profilePic = profilePic;
-    }
 
     public String getBioDescription() {
         return bioDescription;
@@ -148,18 +153,35 @@ public class Profile {
         this.updatedAt = LocalDateTime.now();
     }
 
-    @Override
-    public String toString() {
-        return "ArtistProfile{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", location='" + location + '\'' +
-                ", email='" + email + '\'' +
-                ", phone='" + phone + '\'' +
-                ", profilePic='" + profilePic + '\'' +
-                ", bioDescription='" + bioDescription + '\'' +
-                ", createdAt=" + createdAt +
-                ", updatedAt=" + updatedAt +
-                '}';
+    public String getFilename() {
+        return filename;
+    }
+
+    public void setFilename(String filename) {
+        this.filename = filename;
+    }
+
+    public String getFileDownloadUri() {
+        return fileDownloadUri;
+    }
+
+    public void setFileDownloadUri(String fileDownloadUri) {
+        this.fileDownloadUri = fileDownloadUri;
+    }
+
+    public String getFileType() {
+        return fileType;
+    }
+
+    public void setFileType(String fileType) {
+        this.fileType = fileType;
+    }
+
+    public long getSize() {
+        return size;
+    }
+
+    public void setSize(long size) {
+        this.size = size;
     }
 }

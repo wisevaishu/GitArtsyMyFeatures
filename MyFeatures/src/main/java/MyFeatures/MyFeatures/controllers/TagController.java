@@ -1,65 +1,77 @@
 
 package MyFeatures.MyFeatures.controllers;
 
+
 import MyFeatures.MyFeatures.models.Tag;
+import MyFeatures.MyFeatures.models.dto.TagDTO;
 import MyFeatures.MyFeatures.repositories.TagRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import java.util.ArrayList;
+
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 //Controller for managing Tags.
 @RestController
 @RequestMapping("gitartsy/api/tags")
+@CrossOrigin(origins = "http://localhost:5173")
 public class TagController {
 
     @Autowired
     private TagRepository tagRepository;
 
-    // List to store tags in memory (replace with database logic in a real application)
-    private List<Tag> tags = new ArrayList<>();
-
-    //Retrieves all tags.
+    // Retrieves all tags.
     @GetMapping
-    public List<Tag> getAllTags() {
-        return tagRepository.findAll();
+    public List<TagDTO> getAllTags() {
+        List<Tag> tags = (List<Tag>) tagRepository.findAll();
+        return tags.stream().map(this::convertToDTO).collect(Collectors.toList());
     }
 
     // Retrieves a tag by its ID.
-    @GetMapping(".{id}")
-    public Tag getTagById(Long id) {
-        for (Tag tag : tags) {
-            if (tag.getTagId().equals(id)) {
-                return tag;
-            }
-        }
-        return null;
+    @GetMapping("/{id}")
+    public TagDTO getTagById(@PathVariable Long id) {
+        Tag tag = tagRepository.findById(id).orElse(null);
+        return tag != null ? convertToDTO(tag) : null;
     }
 
-    //Creates a new tag.
+    // Creates a new tag.
     @PostMapping
-    public Tag createTag(Tag tag) {
-        tags.add(tag);
-        return tag;
+    public TagDTO createTag(@RequestBody TagDTO tagDTO) {
+        Tag tag = new Tag();
+        tag.setName(tagDTO.getName());
+        Tag savedTag = tagRepository.save(tag);
+        return convertToDTO(savedTag);
     }
 
-
-    //Updates an existing tag.
+    // Updates an existing tag.
     @PutMapping("/{id}")
-    public Tag updateTag(Long id, Tag newTag) {
-        for (Tag tag : tags) {
-            if (tag.getTagId().equals(id)) {
-                tag.setName(newTag.getName());
-                return tag;
-            }
+    public TagDTO updateTag(@PathVariable Long id, @RequestBody TagDTO tagDTO) {
+        Optional<Tag> existingTag = tagRepository.findById(id);
+        if (existingTag.isPresent()) {
+            Tag tag = existingTag.get();
+            tag.setName(tagDTO.getName());
+            Tag updatedTag = tagRepository.save(tag);
+            return convertToDTO(updatedTag);
         }
         return null;
     }
 
     // Deletes a tag by its ID.
     @DeleteMapping("/{id}")
-    boolean deleteTag(Long id) {
+    public boolean deleteTag(@PathVariable Long id) {
+        if (tagRepository.existsById(id)) {
+            tagRepository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
 
-        return tags.removeIf(tag -> tag.getTagId().equals(id));
+    // Converts Tag entity to TagDTO
+    private TagDTO convertToDTO(Tag tag) {
+        TagDTO tagDTO = new TagDTO();
+        tagDTO.setTagId(tag.getTagId());
+        tagDTO.setName(tag.getName());
+        return tagDTO;
     }
 }

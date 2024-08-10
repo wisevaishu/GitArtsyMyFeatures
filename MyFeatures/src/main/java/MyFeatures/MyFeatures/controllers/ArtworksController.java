@@ -134,10 +134,12 @@ public class ArtworksController {
             // Convert tagIdsJson to List<Long>
             List<Long> tagIds = new ArrayList<>();
             try {
-                ObjectMapper mapper = new ObjectMapper();
-                tagIds = mapper.readValue(tagIdsJson, new TypeReference<List<Long>>() {});
-            } catch (IOException e) {
-                logger.error("Failed to parse tagIds JSON", e);
+                String[] tagIdsArray = tagIdsJson.split(",");
+                for (String tagIdStr : tagIdsArray) {
+                    tagIds.add(Long.parseLong(tagIdStr.trim()));
+                }
+            } catch (NumberFormatException e) {
+                logger.error("Failed to parse tagIds", e);
                 // Handle error accordingly
             }
 
@@ -155,11 +157,8 @@ public class ArtworksController {
 
             try {
                 Artworks savedArtwork = artworkRepo.save(artwork);
-                //Map<String, Object> response = new HashMap<>();
-                //response.put("message", "Artwork created");
-                //response.put("artwork", savedArtwork);
-                //return ResponseEntity.status(HttpStatus.CREATED).body(response);
 
+                artworksDto.setProfileId(profileId);
                 artworksDto.setDescription(description);
                 artworksDto.setImage(file);
                 artworksDto.setPrice(price);
@@ -180,6 +179,7 @@ public class ArtworksController {
     }
 
 
+
     @GetMapping("/profile/{profileId}")
     public ResponseEntity<List<ArtworksGetDto>> getArtworksByProfile(@PathVariable Integer profileId) {
         List<Artworks> artworks = artworkRepo.findByProfileId(profileId);
@@ -189,23 +189,19 @@ public class ArtworksController {
 
         for (Artworks oneartwork : artworks)
         {
-            ArtworksGetDto artworksGetDto = new ArtworksGetDto();
-            artworksGetDto.setFileDownloadUri(oneartwork.getFileDownloadUri());
-            artworksGetDto.setFileType(oneartwork.getFileType());
-            artworksGetDto.setSize(oneartwork.getSize());
+            ArtworksGetDto artworksGetDtoDto = new ArtworksGetDto();
+            artworksGetDtoDto.setTitle(oneartwork.getTitle());
+            artworksGetDtoDto.setFileDownloadUri(oneartwork.getFileDownloadUri());
+            artworksGetDtoDto.setFileType(oneartwork.getFileType());
+            artworksGetDtoDto.setSize(oneartwork.getSize());
+            allArtworks.add(artworksGetDtoDto);
 
-            // Set new fields
-
-            artworksGetDto.setTitle(oneartwork.getTitle());
-            artworksGetDto.setDescription(oneartwork.getDescription());
-            artworksGetDto.setPrice(oneartwork.getPrice());
-            artworksGetDto.setTags(oneartwork.getTags());
-            allArtworks.add(artworksGetDto);
         }
 
         return ResponseEntity.ok(allArtworks);
 
     }
+
 
     @GetMapping("/{fileName:.+}")
     public ResponseEntity<Resource> downloadFile(@PathVariable String fileName, HttpServletRequest request) {

@@ -15,7 +15,7 @@ const UploadArtwork = ({onUploadSuccess}) => {
 
     const [tags, setTags] = useState([]);
     const [selectedFile, setSelectedFile] = useState(null);
-        const [uploading, setUploading] = useState(false);
+    const [uploading, setUploading] = useState(false);
     const [error, setError] = useState("");
     const navigate = useNavigate();
     const [user, setUser] = useState(null);
@@ -52,7 +52,7 @@ const UploadArtwork = ({onUploadSuccess}) => {
     };
 
     const handleTagChange = (e) => {
-        const value = e.target.value;
+        const value = Number(e.target.value);
         const checked = e.target.checked;
 
         setFormData(prevFormData => {

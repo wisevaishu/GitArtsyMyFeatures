@@ -1,4 +1,4 @@
-package org.launchcode.git_artsy_backend.models.dto;
+package MyFeatures.MyFeatures.models.dto;
 
 import jakarta.persistence.*;
 
@@ -7,23 +7,31 @@ import java.time.LocalDateTime;
 
 public class ProfileDto {
 
-    private Long userId;
+    private Integer id;
+
     private String name;
     private String location;
     private String email;
     private String phone;
-    private String profilePic;
+    private String filename;
+    private String fileDownloadUri;
+    private String fileType;
+    private long size;
     private String bioDescription;
 
-    // Getters and setters
 
-    public Long getUserId() {
-        return userId;
+
+    // Getters and Setters
+
+    public Integer getId() {
+        return id;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setId(Integer id) {
+        this.id = id;
     }
+
+
 
     public String getName() {
         return name;
@@ -57,12 +65,36 @@ public class ProfileDto {
         this.phone = phone;
     }
 
-    public String getProfilePic() {
-        return profilePic;
+    public String getFilename() {
+        return filename;
     }
 
-    public void setProfilePic(String profilePic) {
-        this.profilePic = profilePic;
+    public void setFilename(String filename) {
+        this.filename = filename;
+    }
+
+    public String getFileDownloadUri() {
+        return fileDownloadUri;
+    }
+
+    public void setFileDownloadUri(String fileDownloadUri) {
+        this.fileDownloadUri = fileDownloadUri;
+    }
+
+    public String getFileType() {
+        return fileType;
+    }
+
+    public void setFileType(String fileType) {
+        this.fileType = fileType;
+    }
+
+    public long getSize() {
+        return size;
+    }
+
+    public void setSize(long size) {
+        this.size = size;
     }
 
     public String getBioDescription() {
@@ -72,4 +104,8 @@ public class ProfileDto {
     public void setBioDescription(String bioDescription) {
         this.bioDescription = bioDescription;
     }
+
+
+
+
 }

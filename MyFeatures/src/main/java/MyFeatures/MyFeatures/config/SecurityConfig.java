@@ -43,21 +43,12 @@ public class SecurityConfig implements WebMvcConfigurer {
                 .csrf(AbstractHttpConfigurer::disable)  // Disabling CSRF protection
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/gitartsy/api/register/save", "/gitartsy/api/register/login", "/gitartsy/api/tags/**",
-                                "/gitartsy/api/artworks/**", "/uploads/**").permitAll()
+                                "/gitartsy/api/artworks/**", "/uploads/**", "gitartsy/api/profiles/**").permitAll()
                         .anyRequest().authenticated()  // Require authentication for any other requests
                 );
         return http.build();
     }
 
-    @Bean
-    public UserDetailsService userDetailsService() {
-        return new InMemoryUserDetailsManager(
-                User.withUsername("user")
-                        .password("{noop}password")  // {noop} is used to indicate no encoding
-                        .roles("USER")
-                        .build()
-        );
-    }
 
     @Value("${upload.path}")
     private String uploadPath;
@@ -72,4 +63,6 @@ public class SecurityConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**").allowedOrigins("http://localhost:5173");
     }
+
+
 }

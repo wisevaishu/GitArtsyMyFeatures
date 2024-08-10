@@ -12,6 +12,11 @@ import UploadArtwork from './components/UploadArtwork/UploadArtwork';
 
 import ArtworksList from './components/UploadArtwork/ArtworkList';
 import Tag from './components/Tag/Tag'; 
+import CreateProfile from './components/Profile/CreateProfile';
+import ViewProfile from './components/Profile/ViewProfile';
+
+
+
 
 const App = () => {
   return (
@@ -26,9 +31,10 @@ const App = () => {
         <Route path="/artworkslist" element={<Home><ArtworksList /></Home>} />
         <Route path="/tags" element={<Home><Tag /></Home>} />
 
-        
+        <Route path="/createprofile" element={<Home><CreateProfile /></Home>} />
+        <Route path="/viewprofile" element={<Home><ViewProfile /></Home>} />
 
-
+   
         
     </Routes>
   </Router>
